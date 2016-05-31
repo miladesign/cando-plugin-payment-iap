@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cando-plugin-payment-iap"
+    version="1.0.0">
+
+	<name>Cando IAP plugin</name>
+    <description>Cando IAP plugin</description>
+    <author>Milad Mohammadi</author>		
+    <license>MIT</license>
+    <keywords>cando,plugin,payment,IAP</keywords>
+    <repo>https://github.com/miladesign/cando-plugin-payment-iap</repo>
+    <issue>https://github.com/miladesign/cando-plugin-payment-iap/issues</issue>
+	<engines>
+	    <engine name="cordova" version=">=3.0.0" />
+	</engines>
+	
+    <js-module src="www/iap.js" name="iap">
+        <clobbers target="window.iap" />
+    </js-module>
+    
+    <!-- android -->
+    <platform name="android">    
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="IAP" >
+				<param name="android-package" value="ir.cando.miladesign.IAP"/>
+			</feature>
+	    </config-file>
+	    
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="com.android.vending.BILLING" />
+        </config-file>		
+		
+		<source-file src="src/android/IAP.java" target-dir="src/ir.cando.miladesign"/>
+		<source-file src="src/android/MdCando.jar" target-dir="libs" />
+    </platform>
+	
+</plugin>
